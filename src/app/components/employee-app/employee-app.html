@@ -1,0 +1,200 @@
+<div class="accordion pt-4" id="accordionExample">
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                aria-expanded="true" aria-controls="collapseOne">
+                GetBusVendors / PostBusVendor / PutBusVendors / DeleteBusVendor
+            </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        @if (isOpenForm) {
+                        <div class="col-12 pb-4">
+                            <div class="card">
+                                <div class="card-header bg-secondary text-white">
+                                    {{ newEmployeeObj.employeeId == 0 ? 'Add New Batch' : 'Update Batch' }}
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <label for="fullName">Full Name</label>
+                                            <input type="text" class="form-control" id="fullName"
+                                                placeholder="Enter full name" [(ngModel)]="newEmployeeObj.fullName" />
+
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="email">Email</label>
+                                            <input type="email" class="form-control" id="email"
+                                                placeholder="Enter email" [(ngModel)]="newEmployeeObj.email" />
+
+
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="phone">Phone</label>
+                                            <input type="text" class="form-control" id="phone"
+                                                placeholder="Enter phone number" [(ngModel)]="newEmployeeObj.phone" />
+
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="gender">Gender</label>
+                                            <select class="form-select" id="gender" [(ngModel)]="newEmployeeObj.gender">
+                                                <option value="">Select gender</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+
+
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="dateOfJoining">Date of Joining</label>
+                                            <input type="date" class="form-control" id="dateOfJoining" [(ngModel)]="newEmployeeObj.dateOfJoining" />
+
+
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="departmentId">Department</label>
+                                            <select class="form-select" (change)="getDesignationByDeptId()" id="departmentId" [(ngModel)]="newEmployeeObj.departmentId">
+                                                <option value="">Select Department</option>
+                                                 @for (item of departmentsList(); track $index) {
+                                                    <option [value]="item.departmentId">{{item.departmentName}}</option>
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="designationId">Designation</label>
+                                            <select class="form-select" id="designationId" [(ngModel)]="newEmployeeObj.designationId">
+                                                <option value="">Select Designation</option>
+                                                @for (item of designationList(); track $index) {
+                                                    <option [value]="item.designationId">{{item.designationName}}</option>
+                                                }
+                                            </select>
+
+
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="employeeType">Employee Type</label>
+                                            <select class="form-select" id="employeeType" [(ngModel)]="newEmployeeObj.employeeType" >
+                                                <option value="">Select type</option>
+                                                @for (item of employeesList(); track $index) {
+                                                    <option [value]="item.designationId">{{item.employeeType}}</option>
+                                                }
+                                            </select>
+
+
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="salary">Salary</label>
+                                            <input type="number" class="form-control" id="salary"
+                                                placeholder="Enter salary" [(ngModel)]="newEmployeeObj.salary" />
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="d-flex justify-content-end gap-4">
+                                        <!-- <button class="btn btn-secondary" (click)="onResetForm()">Reset</button>
+                     @if(newBatchObj.batchId==0){
+                    <button class="btn btn-success" (click)="onSaveBatch()">Submit</button>
+                    } @else {
+                    {{ newBatchObj.batchId }}
+                    <button class="btn btn-warning" (click)="onUpdateBatch()">Update</button>
+
+                    } -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        }
+
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header bg-light text-dark d-flex justify-content-between">Batch List
+                                    <button class="btn btn-sm btn-success" (click)="openForm()">{{isOpenForm?'Close User Form':'Add New User'}}</button>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Sl No</th>
+                                                <th>Full Name</th>
+                                                <th>Email</th>
+                                                <th>Phone</th>
+                                                <th>Gender</th>
+                                                <th>Date Of Joining</th>
+                                                <th>EmployeeType</th>
+                                                <th>Salary</th>
+                                                <th>Department Name</th>
+                                                <th>Designation Name</th>
+                                                <th>Activity</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @for(item of employeesList();track $index){
+                                            <tr>
+                                                <td>{{$index+1}}</td>
+                                                <td>{{item.fullName}}</td>
+                                                <td>{{item.email}}</td>
+                                                <td>{{item.phone}}</td>
+                                                <td>{{item.gender}}</td>
+                                                <td>{{item.dateOfJoining}}</td>
+                                                <td>{{item.employeeType}}</td>
+                                                <td>{{item.salary}}</td>
+                                                <td>{{item.departmentName}}</td>
+                                                <td>{{item.designationName}}</td>
+                                                <td>
+                                                    <i (click)="editRecord(item)" class="fa-solid fa-pen-to-square"
+                                                        title="Edit Record" style="color: #0041a8"></i>
+                                                    <i (click)="deleteRecord(item.batchId)"
+                                                        class="fa-solid fa-trash-can" title="Delete Record"
+                                                        style="color: #ff0000"></i>
+                                                </td>
+                                            </tr>
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                GetAllUsers / AddNewUser / UpdateUser / DeleteUserByUserId
+            </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Accordion Item #3
+            </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <strong>This is the third item’s accordion body.</strong> It is hidden by default, until the
+                collapse plugin adds the appropriate classes that we use to style each element. These
+                classes control the overall appearance, as well as the showing and hiding via CSS
+                transitions. You can modify any of this with custom CSS or overriding our default variables.
+                It’s also worth noting that just about any HTML can go within the
+                <code>.accordion-body</code>, though the transition does limit overflow.
+            </div>
+        </div>
+    </div>
+</div>

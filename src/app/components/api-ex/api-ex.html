@@ -1,0 +1,21 @@
+<button (click)="getBusVendor()">Get Vendor</button>
+<button (click)="getAllClients()">Get Client List</button>
+
+<div class="row">
+    <div class="col-6">
+        <ul>
+            <h3>Bus Vendor List</h3>
+            @for (item of busVendorList(); track $index) {
+            <li>{{item.vendorName}}</li>
+            }
+        </ul>
+    </div>
+    <div class="col-6">
+        <ul>
+            <h3>Client List</h3>
+            @for (item of clientList(); track $index) {
+            <li>{{item.clientName}}</li>
+            }
+        </ul>
+    </div>
+</div>

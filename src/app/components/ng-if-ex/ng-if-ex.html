@@ -1,0 +1,135 @@
+<div class="row">
+    <div class="col-12">
+        <h3 class="question">Task 1:
+            Create 2 Radio Button for male & female
+            If male selected Show "You Have selected Male"
+            If feMale selected Show "You Have selected Female"
+        </h3>
+        <p class="output">
+            <input type="radio" name="gender" [(ngModel)]="genderVal" value="You Have selected Male">
+            <input type="radio" name="gender" [(ngModel)]="genderVal" value="You Have selected Female">
+        </p>
+        <p>{{genderVal}}</p>
+    </div>
+    <hr>
+
+    <div class="col-12">
+        <h3 class="question">Task 2:
+            Show Product Category in 3 Div
+            On click of div - store selected category in a variable
+            show selected Companies of selected category
+
+        </h3>
+        <div class="d-flex gap-4">
+            <span class="bg bg-success" (click)="onAddProduct('Mobile')">Mobile</span>
+            <span class="bg bg-warning" (click)="onAddProduct('Laptop')">Laptop</span>
+            <span class="bg bg-primary" (click)="onAddProduct('Camera')">Camera</span>
+        </div>
+        <p>{{product}}</p>
+    </div>
+    <hr>
+
+    <div class="col-12">
+        <h3 class="question">Task 3:<br />
+            show hide div1 on click of show & hide button<br />
+            show hide div2 on click of toggle button <br />
+            if we enter same value in both textbox hide div3 else show
+
+
+        </h3>
+        <div class="row">
+            <div class="col-3">
+                <div class="d-flex flex-column gap-4">
+                    <div class="bg bg-success" *ngIf="isActive">Div 1</div>
+                    <div>
+                        <button class="bg bg-primary" (click)="onShow()">Show</button>
+                        <button class="bg bg-warning" (click)="onHide()">Hide</button>
+                    </div>
+                    
+                </div>  
+                
+            </div>
+            <div class="col-3">
+                <div class="d-flex flex-column gap-4">
+                    <div class="bg bg-primary" *ngIf="isShow">Div 2</div>
+                    <button class="bg bg-primary" (click)="onShowHide()">Show/Hide</button>
+                </div>
+                
+            </div>
+            <div class="col-3">
+                <div class="d-flex flex-column gap-4">
+                    <div class="bg bg-danger" *ngIf="inputFirst==inputSecond">Div 3</div>
+                    <input type="text" [(ngModel)]="inputFirst"  />
+                    <input type="text" [(ngModel)]="inputSecond" />
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <h3 class="question">Task 4<br />
+        create full name from first name & last name<br />
+        if state other selected - show other textbox likewise city also<br />
+        on checkbox check ..show selected div as per value selected<br />
+        instead of checkbox you can use radio button as well
+        </h3>
+        <div class="row">
+            <div class="col-3">
+                <div class="d-flex flex-column gap-4">
+                    <div>
+                        <input type="text" [(ngModel)]="firstName" />
+                        <input type="text" [(ngModel)]="lastName"/>
+                    </div>
+                    <div><input type="text" [value]="firstName+' '+lastName" readonly /></div>
+                    
+                </div>  
+            </div>
+            <div class="col-3">
+                
+            </div>
+            
+        </div>
+    </div>
+
+
+    <div class="col-12">
+        <h3 class="question">Task 5<br>
+        Create a student array with name, age, attendance, gender, isIndian fields.
+        Show data in a table format.
+        If age is less than 50, show "Low"; if gender is "M", show "Male", otherwise "Female"; if isIndian is true, show "Indian", otherwise "Foreigner".
+
+        </h3>
+        <div class="row">
+            <div class="col-3">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Sl No</th>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Attendance</th>
+                            <th>Gender</th>
+                            <th>Is Indian</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of student;let no = index">
+                            <td>{{no+1}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.age}}</td>
+                            <td>{{item.attendance}}</td>
+                            <td>{{item.gender=='m'?'Male':'Female'}}</td>
+                            <td>{{item.isIndian==true?'Indian':'Foreigner'}}</td>
+                        </tr>
+                    </tbody>
+                </table> 
+            </div>
+            <div class="col-3">
+                
+            </div>
+            
+        </div>
+    </div>
+
+</div>

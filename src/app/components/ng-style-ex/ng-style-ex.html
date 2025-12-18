@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-12">
+        <h3 class="question">Task 1<br>
+            On success btn click add bg-success class & on danger add bg-danger<br>
+            On Circle btn add dynamic class with styles<br>
+            Show count of Added Cities beside dropdown
+        </h3>
+        <div class="row">
+            <div class="col-4">
+                <div>
+                    <div class="mb-2" [ngStyle]="{'background-color':bgColor}">MY Div Area </div>
+                    <button type="button" (click)="onSucessStyle()" class="btn btn-success">Success</button>
+                    <button type="button" (click)="onDangerStyle()" class="btn btn-danger">Danger</button>
+                </div>
+            </div>
+            <div class="col-4">
+                <div [ngStyle]="styleObj">Dynamic Div</div>
+                <input type="text" [(ngModel)]="inputWidth"/>
+                <input type="text" [(ngModel)]="inputHeight"/>
+                <input type="text" [(ngModel)]="inputRadius"/>
+                <input type="color" class="form-control form-control-color" id="exampleColorInput" [(ngModel)]="inputColor" title="Choose your color">
+                <button type="button" (click)="onDynamicStyle()" >Create Div</button>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="col-6">
+        <h3 class="question">Task 2<br>
+            Create Bootstrap progress bar
+            Add width dynamically to progress bar by reading value from textbox
+
+        </h3>
+        <div class="row">
+            <div class="col-4">
+                <div>
+                    <div class="progress mb-2 mt-4">
+                        <div class="progress-bar" role="progressbar" [ngStyle]="{'width': inputNumber+'%'}"
+                            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <input type="text" class="form-control" [(ngModel)]="inputNumber" />
+                </div>
+            </div>
+            <div class="col-4">
+
+            </div>
+        </div>
+    </div>
+</div>

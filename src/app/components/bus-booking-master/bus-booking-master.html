@@ -1,0 +1,255 @@
+<div class="accordion pt-4" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button
+        class="accordion-button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseOne"
+        aria-expanded="true"
+        aria-controls="collapseOne"
+      >
+        GetBusVendors / PostBusVendor / PutBusVendors / DeleteBusVendor
+      </button>
+    </h2>
+    <div
+      id="collapseOne"
+      class="accordion-collapse collapse show"
+      data-bs-parent="#accordionExample"
+    >
+      <div class="accordion-body">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-8">
+              <div class="card">
+                <div class="card-header bg-secondary text-white">Vendor List</div>
+                <div class="card-body">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Sl No</th>
+                        <th>Vendor Name</th>
+                        <th>Contact No</th>
+                        <th>Email Id</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for(item of busVendorList();track $index){
+                      <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ item.vendorName }}</td>
+                        <td>{{ item.contactNo }}</td>
+                        <td>{{ item.emailId }}</td>
+                        <td>
+                          <div class="d-flex gap-2">
+                            <i
+                              (click)="editRecord(item)"
+                              class="fa-solid fa-pen-to-square"
+                              title="Edit Record"
+                              style="color: #0041a8"
+                            ></i>
+                            <i
+                              (click)="deleteRecord(item.vendorId)"
+                              class="fa-solid fa-trash-can"
+                              title="Delete Record"
+                              style="color: #ff0000"
+                            ></i>
+                          </div>
+                        </td>
+                      </tr>
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="card">
+                <div class="card-header bg-secondary text-white">
+                  {{ newVendorObj.vendorId == 0 ? 'Add New Vendor' : 'Update Vendor' }}
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12">
+                      <label for="vendorName" class="label">Vendor Name</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="newVendorObj.vendorName"
+                        name="vendorName"
+                      />
+                    </div>
+                    <div class="col-6">
+                      <label for="contactNo">Vendor Contact</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="newVendorObj.contactNo"
+                        name="contactNo"
+                      />
+                    </div>
+                    <div class="col-6">
+                      <label for="emailId">Vendor Email</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="newVendorObj.emailId"
+                        name="emailId"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <div class="d-flex justify-content-end gap-4">
+                    <button class="btn btn-secondary" (click)="onResetForm()">Reset</button>
+                    @if(newVendorObj.vendorId==0){
+                    <button class="btn btn-success" (click)="onSaveVendor()">Submit</button>
+                    } @else {
+                    {{ newVendorObj.vendorId }}
+                    <button class="btn btn-warning" (click)="onUpdateVendor()">Update</button>
+
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button
+        class="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseTwo"
+        aria-expanded="false"
+        aria-controls="collapseTwo"
+      >
+        GetAllUsers / AddNewUser / UpdateUser / DeleteUserByUserId
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+       <div class="container-fluid">
+          <div class="row">
+            @if (isOpenForm) {
+              <div class="col-12 pb-4">
+              <div class="card">
+                <div class="card-header bg-secondary text-white">
+                  {{ newVendorObj.vendorId == 0 ? 'Add New User' : 'Update User' }}
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12">
+                      <label for="vendorName" class="label">Vendor Name</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="newVendorObj.vendorName"
+                        name="vendorName"
+                      />
+                    </div>
+                    <div class="col-6">
+                      <label for="contactNo">Vendor Contact</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="newVendorObj.contactNo"
+                        name="contactNo"
+                      />
+                    </div>
+                    <div class="col-6">
+                      <label for="emailId">Vendor Email</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="newVendorObj.emailId"
+                        name="emailId"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <div class="d-flex justify-content-end gap-4">
+                    <button class="btn btn-secondary" (click)="onResetForm()">Reset</button>
+                    @if(newVendorObj.vendorId==0){
+                    <button class="btn btn-success" (click)="onSaveVendor()">Submit</button>
+                    } @else {
+                    {{ newVendorObj.vendorId }}
+                    <button class="btn btn-warning" (click)="onUpdateVendor()">Update</button>
+
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+            }
+            
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header bg-light text-dark d-flex justify-content-between">User List <button class="btn btn-sm btn-success" (click)="openAddUserForm()">{{isOpenForm?'Close User Form':'Add New User'}}</button></div>
+                <div class="card-body">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Sl No</th>
+                        <th>User Name</th>                        
+                        <th>Email Id</th>
+                        <th>Role</th>
+                        <th>Project Name</th>
+                        <th>Created Date</th>
+                        <th>Activity</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for(item of userList();track $index){
+                        <tr>
+                        <td>{{$index+1}}</td>
+                        <td>{{item.userName}}</td>
+                        <td>{{item.emailId}}</td>
+                        <td>{{item.role}}</td>
+                        <td>{{item.projectName}}</td>
+                        <td>{{item.createdDate}}</td>
+                        <td>edit</td>
+                      </tr>
+                      }
+                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button
+        class="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseThree"
+        aria-expanded="false"
+        aria-controls="collapseThree"
+      >
+        Accordion Item #3
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <strong>This is the third item’s accordion body.</strong> It is hidden by default, until the
+        collapse plugin adds the appropriate classes that we use to style each element. These
+        classes control the overall appearance, as well as the showing and hiding via CSS
+        transitions. You can modify any of this with custom CSS or overriding our default variables.
+        It’s also worth noting that just about any HTML can go within the
+        <code>.accordion-body</code>, though the transition does limit overflow.
+      </div>
+    </div>
+  </div>
+</div>

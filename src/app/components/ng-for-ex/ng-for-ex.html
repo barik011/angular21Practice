@@ -1,0 +1,128 @@
+<div class="row">
+     <div class="col-4">
+        <h3 class="question">Task 1<br/>
+        on add btn click Entered City Should be added to dropdown option<br/>
+        after adding city - textbox Should be empty<br/>
+        Show count of Added Cities beside dropdown<br/>
+        if Entered city is already added in dropdown show error that city already present
+        </h3>
+        <div class="d-flex align-items-center gap-4 mb-2">
+            <input type="text" class="form-control" [(ngModel)]="newCity"/>
+            <button (click)="onAddCity()" type="button" class="btn btn-primary">AddCity</button>
+        </div>
+        <div class="d-flex align-items-center gap-4 mb-2">
+            <select class="form-select" >
+                @for (item of cityList; track $index) {
+                    <option value="item">{{item}}</option>
+                }
+                
+            </select>
+            <p>Total No of City:{{cityList.length}} <span></span></p>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <h3 class="question">Task 2<br>
+            Create an Array of string for Languages with 5 Langugaes<br>
+            using ngfor show languages in button<br>
+            on click of that button make it selected and add green color
+        </h3>
+        <div class="d-flex align-items-center gap-4 mb-2">
+            @for(item of languageList; track $index){
+            <button (click)="onAddBgColor(item)"
+             type="button"
+             class="btn btn-secondary" [class.bg-success]="selectedItem==item">{{item}}</button>
+            }
+        </div>
+        
+    </div>
+
+    <div class="col-4">
+        <h3 class="question">Task 3<br>
+        on Print btn click Show table of entered No into html table like below <br>
+        If textbox is empty show alert To Enter Value
+</h3>
+        <div class="d-flex align-items-center gap-4 mb-2">
+            <input type="text" class="form-control" [(ngModel)]="tableNo"/>
+            <button (click)="onCreateTable()" type="button" class="btn btn-primary">Print Table</button>
+        </div>
+        <div class="d-flex flex-column mb-2">
+            @for(item of tableArray; track $index){
+                <p>{{item}}</p>
+            }
+            
+        </div>
+        
+    </div>
+    <hr>
+</div>
+<div class="row">
+ <div class="col-4">
+        <h3 class="question">Task 5<br>
+        create array of object with fields URL, Text use ngFor to Display records in table
+        show Sr No in 1st TD by using index property from ngFor
+        add bg-success class to 1st record using first property from ngFor
+        add bg-danger class to last record using last property from ngFor
+        </h3>
+
+        <div class="d-flex align-items-center gap-4 mb-2">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Sl No</th>
+                    <th>Url</th>
+                    <th>Sl No</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(item of objArray;track $index;let first=$first;let last=$last){
+                    <tr>
+                        <td [ngClass]="{'bg bg-success':first,'bg-danger':last}">{{$index+1}}</td>
+                        <td [ngClass]="{'bg bg-success':first,'bg-danger':last}">{{item.url}}</td>
+                        <td [ngClass]="{'bg bg-success':first,'bg-danger':last}">{{item.text}}</td>
+                    </tr>
+                }                
+            </tbody>
+        </table>
+        </div>       
+        
+    </div>
+    <div class="col-4">
+        <h3 class="question">Task 6<br>
+            Create City And State Array Bind that to Dropdown
+            City Array Fileds: cityId, CityName & stateArray fileds stateId, StateName
+            on Get Data btn click..show selected city and state id in span tag
+        </h3>
+        <div class="d-flex align-items-center gap-4 mb-2">
+            <div>
+                <select [(ngModel)]="selectedCityId" class="form-select" name="stateList">
+                    <option value="" selected>Select</option>
+                @for(city of citiesList;track $index){
+                    <option [value]="$index+1">{{city}}</option>
+                }
+                
+            </select>
+            Selected City Id:{{selectedCityId}}
+            </div>
+           <div>
+            <select [(ngModel)]="selectedStateId" class="form-select" name="cityList">
+                <option value="" selected>Select</option>
+                @for (state of stateList; track $index) {
+                    <option [value]="$index+1">{{state}}</option>
+                }
+                
+            </select>
+            Selected State Id: {{selectedStateId}}
+           </div>
+            
+        </div>
+        <div class="d-flex flex-column mb-2">
+            @for(item of tableArray; track $index){
+                <p>{{item}}</p>
+            }
+            
+        </div>
+        
+    </div>
+    <hr>
+</div>

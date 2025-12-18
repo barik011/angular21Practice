@@ -1,0 +1,101 @@
+<div class="row">
+    <div class="col-4">
+        <h3 class="question">Task 1<br>
+        create a varible and store class into it
+        on page load add that class to a div tag
+        </h3>
+        <div [ngClass]="box1">
+            Div1
+        </div>
+    </div>
+
+    <div class="col-4">
+        <h3 class="question">Task 2<br>
+        Create a varible and store class into it
+        create 1 button with name toggle class
+        on click of button add "bg-success" class 
+        to div and again if we click add "bg-danger" 
+        class
+        </h3>
+        <div>
+            <div  class="mb-2" [ngClass]="isActive?'bg-success':'bg-danger'">MY Div Area </div>
+            <button type="button"  (click)="onToggleClass()" class="btn btn-success">Toggle</button>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <h3 class="question">Task 3<br>        
+        On success btn click add bg-success class 
+        & on danger add bg-danger
+        Add button with some languages -
+        on click of language make it selected
+        </h3>
+        <div>
+            <div class="mb-2"  [ngClass]="isBackground?'bg-success':'bg-danger'">MY Div Area </div>
+            <button type="button" (click)="onSuccess()" class="btn btn-success">Success Bg</button>
+            <button type="button" (click)="onDanger()" class="btn btn-danger">Danger Bg</button>
+        </div>
+
+        <div>
+            @for (item of languageList; track $index) {
+                <button class="btn" [ngClass]="selectedLang==item?'btn-primary':''" (click)="onChangeBg(item)" type="text" >{{item}}</button>
+            }
+        </div>
+    </div>
+
+<hr>
+
+<div class="col-4">
+        <h3 class="question">Task 4<br>
+            on add btn add col-7 class to first div & show 2nd div
+            on close btn add class col-12 to first div and hide 2nd div
+        </h3>
+        <div class="row">
+            <div class="box" [ngClass]="isShow?'col-6':'col-12'">Col 6 Div1
+                <button type="button" (click)="onSidePanel()" class="btn btn-success">Add New</button>
+            </div>
+            @if (isShow) {
+            <div class="box col-6" >Col 6 Div2 
+                 <button type="button" (click)="onClosePanel()" class="btn btn-primary">Close</button>
+            </div>
+            }
+            
+        </div>
+    </div>
+
+    <div class="col-4">
+        <h3 class="question">Task 5<br>
+        Create array of students with fields studId, name, isActive, gender,state
+        using ngfor show array into table
+        At a time Only One Row Shoube be selected-
+        On click of TR we have to add "bg-secondary" class to that tr- See Ex below
+        </h3>
+        <div class="row">
+            <div class="col-12">
+                <table class=" table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Sl No</th>
+                            <th>Name</th>
+                            <th>Gender</th>
+                            <th>State</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (item of students; track $index) {
+                            <tr (click)="onSelectRow(item.studId)" [class.bg-primary]="selectedId==item.studId">
+                            <td>{{item.studId}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.gender}}</td>
+                            <td>{{item.state}}</td>
+                        </tr>
+                        }
+                        
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+    </div>
+
+</div>
