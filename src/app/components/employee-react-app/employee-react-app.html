@@ -1,0 +1,219 @@
+<div class="accordion pt-4" id="accordionExample">
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                aria-expanded="true" aria-controls="collapseOne">
+                GetBusVendors / PostBusVendor / PutBusVendors / DeleteBusVendor
+            </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        @if (isOpenForm) {
+                        <div class="col-12 pb-4">
+                            <div class="card">
+                                 <form [formGroup]="employeeForm">
+                                <div class="card-header bg-secondary text-white">
+                                    {{ employeeForm.controls['employeeId'].value == 0 ? 'Add New Batch' : 'Update Batch' }}
+                                </div>
+                                <div class="card-body">
+                                   
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <label for="fullName">Full Name</label>
+                                            <input type="text" class="form-control"  id="fullName"
+                                                placeholder="Enter full name" formControlName="fullName" />
+                                            @if(employeeForm.controls['fullName'].touched){
+                                                @if(employeeForm.controls['fullName'].errors?.['required']){
+                                                <span class="text-danger">Field is requires</span>
+                                                }
+                                                @if(employeeForm.controls['fullName'].errors?.['minlength']){
+                                                <span class="text-danger">Enter min char 4 </span>
+                                                }
+                                                }
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="email">Email</label>
+                                            <input type="email" class="form-control" id="email"
+                                                placeholder="Enter email"  formControlName="email" />
+
+                                            @if(employeeForm.controls['email'].touched){
+                                                @if(employeeForm.controls['email'].errors?.['required']){
+                                                <span class="text-danger">Field is requires</span>
+                                                }
+                                                @if(employeeForm.controls['email'].errors?.['pattern']){
+                                                <span class="text-danger">Enter valid email id</span>
+                                                }
+                                                }
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="phone">Phone</label>
+                                            <input type="text" class="form-control" id="phone"
+                                            placeholder="Enter phone number"  formControlName="phone" />
+                                            @if(employeeForm.controls['phone'].touched){
+                                                @if(employeeForm.controls['phone'].errors?.['required']){
+                                                <span class="text-danger">Field is requires</span>
+                                                }
+                                                @if(employeeForm.controls['phone'].errors?.['pattern']){
+                                                <span class="text-danger">Enter Valid Phone Number</span>
+                                                }
+                                                }
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="gender">Gender</label>
+                                            <select class="form-select" id="gender"  formControlName="gender">
+                                                <option value="">Select gender</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                            @if(employeeForm.controls['gender'].touched){
+                                                @if(employeeForm.controls['gender'].errors?.['required']){
+                                                <span class="text-danger">Select filed is requires</span>
+                                                }
+                                                }
+
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="dateOfJoining">Date of Joining</label>
+                                            <input type="datetime" class="form-control" id="dateOfJoining"  formControlName="dateOfJoining" />
+                                        @if(employeeForm.controls['dateOfJoining'].touched){
+                                                @if(employeeForm.controls['dateOfJoining'].errors?.['required']){
+                                                <span class="text-danger">Field is requires</span>
+                                                }
+
+                                                }
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="departmentId">Department</label>
+                                            <select class="form-select" (change)="getDesignationByDeptId()" id="departmentId"  formControlName="departmentId">
+                                                    <option [value]="0" disabled selected>Select Department</option>                                                
+                                                        @for (item of departmentsList(); track $index) {
+                                                    <option [value]="item.departmentId">{{item.departmentName}}</option>
+                                                }
+                                            </select>
+                                            @if(employeeForm.controls['departmentId'].touched){
+                                                @if(employeeForm.controls['departmentId'].errors?.['required']){
+                                                <span class="text-danger">Select filed is requires</span>
+                                                }
+                                                }
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="designationId">Designation</label>
+                                            <select class="form-select" id="designationId" formControlName="designationId">
+                                                <option [value]="0" selected>Select Designation</option>
+                                                @for (item of designationList(); track $index) {
+                                                    <option [value]="item.designationId">{{item.designationName}}</option>
+                                                }
+                                            </select>
+                                            @if(employeeForm.controls['designationId'].touched){
+                                                @if(employeeForm.controls['designationId'].errors?.['required']){
+                                                <span class="text-danger">Select filed is requires</span>
+                                                }
+                                                }
+
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="employeeType">Employee Type</label>
+                                            <select class="form-select" id="employeeType" formControlName="employeeType" >
+                                                <option value="">Select type</option>
+                                                @for (item of employeesList(); track $index) {
+                                                    <option [value]="item.employeeType">{{item.employeeType}}</option>
+                                                }
+                                            </select>
+                                            @if(employeeForm.controls['employeeType'].touched){
+                                                @if(employeeForm.controls['employeeType'].errors?.['required']){
+                                                <span class="text-danger">Select filed is requires</span>
+                                                }
+                                                }
+
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="salary">Salary</label>
+                                            <input type="number" class="form-control" id="salary"
+                                                placeholder="Enter salary" formControlName="salary" />
+
+                                            @if(employeeForm.controls['salary'].touched){
+                                                @if(employeeForm.controls['salary'].errors?.['required']){
+                                                <span class="text-danger">Select filed is requires</span>
+                                                }
+                                                }
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="card-footer">
+                                    <div class="d-flex justify-content-end gap-4">
+                                        <button class="btn btn-secondary" (click)="onResetForm()">Reset</button>
+                     @if(employeeForm.controls['employeeId'].value==0){
+                    <button class="btn btn-success" (click)="onSaveEmployee()" [disabled]="employeeForm.invalid">Submit</button>
+                    } @else {
+                    {{ employeeForm.controls['employeeId'].value }}
+                    <button class="btn btn-warning" (click)="onUpdateEmployee()">Update</button>
+
+                    }
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                        }
+
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header bg-light text-dark d-flex justify-content-between">Batch List
+                                    <button class="btn btn-sm btn-success" (click)="openForm()">{{isOpenForm?'Close Employee Form':'Add New Employee'}}</button>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Sl No</th>
+                                                <th>Full Name</th>
+                                                <th>Email</th>
+                                                <th>Phone</th>
+                                                <th>Gender</th>
+                                                <th>Date Of Joining</th>
+                                                <th>EmployeeType</th>
+                                                <th>Salary</th>
+                                                <th>Department Name</th>
+                                                <th>Designation Name</th>
+                                                <th>Activity</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @for(item of employeesList();track $index){
+                                            <tr>
+                                                <td>{{$index+1}}</td>
+                                                <td>{{item.fullName}}</td>
+                                                <td>{{item.email}}</td>
+                                                <td>{{item.phone}}</td>
+                                                <td>{{item.gender}}</td>
+                                                <td>{{item.dateOfJoining}}</td>
+                                                <td>{{item.employeeType}}</td>
+                                                <td>{{item.salary}}</td>
+                                                <td>{{item.departmentName}}</td>
+                                                <td>{{item.designationName}}</td>
+                                                <td>
+                                                    <i (click)="editRecord(item.employeeId)" class="fa-solid fa-pen-to-square"
+                                                        title="Edit Record" style="color: #0041a8"></i>
+                                                    <i (click)="deleteRecord(item.employeeId)"
+                                                        class="fa-solid fa-trash-can" title="Delete Record"
+                                                        style="color: #ff0000"></i>
+                                                </td>
+                                            </tr>
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

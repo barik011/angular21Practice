@@ -9,8 +9,13 @@ import { BusVendorMaster } from './components/bus-booking-master/bus-booking-mas
 import { EnquiryMaster } from './components/enquiry-master/enquiry-master';
 import { FeesTracking } from './components/fees-tracking/fees-tracking';
 import { EmployeeApp } from './components/employee-app/employee-app';
+import { EmployeeReactApp } from './components/employee-react-app/employee-react-app';
 
 export const routes: Routes = [
+    {
+        path:'employee-react-app',
+        component:EmployeeReactApp
+    },
     {
         path:'employee-app',
         component:EmployeeApp

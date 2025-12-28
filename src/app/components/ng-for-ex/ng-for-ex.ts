@@ -1,10 +1,11 @@
 import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Highlight } from "../../directives/highlight";
 
 @Component({
   selector: 'app-ng-for-ex',
-  imports: [FormsModule, NgClass],
+  imports: [FormsModule, NgClass, Highlight],
   templateUrl: './ng-for-ex.html',
   styleUrl: './ng-for-ex.css',
 })
@@ -57,4 +58,14 @@ export class NgForEx {
     stateList:string[]=['Bihar','UP','Delhi','MP','UK','Goa'];
     selectedCityId!:number;
     selectedStateId!:number;
+
+    studentList:any=[
+      {name:'AAA', address:'Can you help translate this site into a foreign language', surname:'ABAB', middleName:'BABA', city:'Purnea',state:'bihar'},
+      {name:'BBBB', address:'Can you help translate this site into a foreign language translate this site into a foreign language', surname:'ABAB', middleName:'BABA', city:'Purnea',state:'bihar'},
+      {name:'CCCC', address:'Can you help translate this site into a foreign language', surname:'ABAB', middleName:'BABA', city:'Purnea',state:'bihar'},
+      {name:'DDDDD', address:'Can you help translate this site into a foreign translate this site into a foreign language language translate this site into a foreign language', surname:'ABAB', middleName:'BABA', city:'Purnea',state:'bihar'},
+      {name:'EEEEEEEE', address:'Can you help translate this site into a foreign language translate this site into a foreign language', surname:'ABAB', middleName:'BABA', city:'Purnea',state:'bihar'},
+      {name:'FFFF', address:'Can you help translate this site into a foreign language', surname:'ABAB', middleName:'BABA', city:'Purnea',state:'bihar'}
+    ]
+    
 }

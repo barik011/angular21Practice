@@ -119,10 +119,38 @@
         <div class="d-flex flex-column mb-2">
             @for(item of tableArray; track $index){
                 <p>{{item}}</p>
-            }
-            
+            }            
         </div>
         
     </div>
     <hr>
+    <div class="col-8">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Sl No</th>
+                    <th appHighlight>Name</th>
+                    <th>Middle Name</th>
+                    <th>Surname</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (item of studentList; track $index) {
+                    <tr>
+                    <td>{{$index+1}}</td>
+                    <td appHighlight>{{item.name}}</td>
+                    <td>{{item.middleName}}</td>
+                    <td>{{item.surname}}</td>
+                    <td>{{item.address}}</td>
+                    <td>{{item.city}}</td>
+                    <td>{{item.state}}</td>
+                </tr>
+                }
+                
+            </tbody>
+        </table>
+    </div>
 </div>

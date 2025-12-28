@@ -43,7 +43,7 @@
                         <td>
                           <div class="d-flex gap-2">
                             <i
-                              (click)="editRecord(item)"
+                              (click)="editVendorRecord(item)"
                               class="fa-solid fa-pen-to-square"
                               title="Edit Record"
                               style="color: #0041a8"
@@ -101,7 +101,7 @@
                 </div>
                 <div class="card-footer">
                   <div class="d-flex justify-content-end gap-4">
-                    <button class="btn btn-secondary" (click)="onResetForm()">Reset</button>
+                    <button class="btn btn-secondary" (click)="onResetVendorForm()">Reset</button>
                     @if(newVendorObj.vendorId==0){
                     <button class="btn btn-success" (click)="onSaveVendor()">Submit</button>
                     } @else {
@@ -139,47 +139,90 @@
               <div class="col-12 pb-4">
               <div class="card">
                 <div class="card-header bg-secondary text-white">
-                  {{ newVendorObj.vendorId == 0 ? 'Add New User' : 'Update User' }}
+                  {{ newUserObj.userId == 0 ? 'Add New User' : 'Update User' }}
                 </div>
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-12">
-                      <label for="vendorName" class="label">Vendor Name</label>
+                    <div class="col-4">
+                      <label for="userName" class="label">User Name</label>
                       <input
                         type="text"
                         class="form-control"
-                        [(ngModel)]="newVendorObj.vendorName"
-                        name="vendorName"
+                        placeholder="Enter User Name"
+                        [(ngModel)]="newUserObj.userName"
+                        name="userName"
                       />
                     </div>
-                    <div class="col-6">
-                      <label for="contactNo">Vendor Contact</label>
+                    <div class="col-4">
+                      <label for="emailId">Email Id</label>
                       <input
                         type="text"
+                        placeholder="Enter Email"
                         class="form-control"
-                        [(ngModel)]="newVendorObj.contactNo"
-                        name="contactNo"
-                      />
-                    </div>
-                    <div class="col-6">
-                      <label for="emailId">Vendor Email</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        [(ngModel)]="newVendorObj.emailId"
+                        [(ngModel)]="newUserObj.emailId"
                         name="emailId"
                       />
                     </div>
+                    <div class="col-4">
+                      <label for="fullName">Full Name</label>
+                      <input
+                        type="text"
+                        placeholder="Enter Full Name"
+                        class="form-control"
+                        [(ngModel)]="newUserObj.fullName"
+                        name="fullName"
+                      />
+                    </div>
+                    <div class="col-4">
+                      <label for="role">role</label>
+                      <select name="role" class="form-select" [(ngModel)]="newUserObj.role">
+                        <option value="" selected disabled>Select Role</option>
+                        <option value="Customer">Customer</option>
+                        <option value="Vendor">Vendor</option>
+                      </select>
+                    </div>
+                    
+                    <div class="col-4">
+                      <label for="password">Password</label>
+                      <input
+                        type="text"
+                        placeholder="Enter Password"
+                        class="form-control"
+                        [(ngModel)]="newUserObj.password"
+                        name="password"
+                      />
+                    </div>
+                    <div class="col-4">
+                      <label for="projectName">Project Name</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter Project Name"
+                        [(ngModel)]="newUserObj.projectName"
+                        name="projectName"
+                      />
+                    </div>
+                    <div class="col-4">
+                      <label for="refreshToken">Refresh Token</label>
+                      <input
+                        type="text"
+                        placeholder="Enter Refresh Token"
+                        class="form-control"
+                        [(ngModel)]="newUserObj.refreshToken"
+                        name="refreshToken"
+                      />
+                    </div>
+                    
                   </div>
                 </div>
                 <div class="card-footer">
                   <div class="d-flex justify-content-end gap-4">
-                    <button class="btn btn-secondary" (click)="onResetForm()">Reset</button>
-                    @if(newVendorObj.vendorId==0){
-                    <button class="btn btn-success" (click)="onSaveVendor()">Submit</button>
+                    <button class="btn btn-secondary" (click)="onResetUserForm()">Reset</button>
+                    @if(newUserObj.userId==0){
+                    <button class="btn btn-success" (click)="onSaveUser()">Submit</button>
                     } @else {
-                    {{ newVendorObj.vendorId }}
-                    <button class="btn btn-warning" (click)="onUpdateVendor()">Update</button>
+                    {{ newUserObj.userId }}
+                    <button class="btn btn-warning" (click)="onUpdateUser()">Update</button>
 
                     }
                   </div>
@@ -195,8 +238,9 @@
                   <table class="table table-bordered">
                     <thead>
                       <tr>
-                        <th>Sl No</th>
-                        <th>User Name</th>                        
+                        <th>Sl No</th>                        
+                        <th>Full Name</th> 
+                        <th>User Name</th>                       
                         <th>Email Id</th>
                         <th>Role</th>
                         <th>Project Name</th>
@@ -207,13 +251,20 @@
                     <tbody>
                       @for(item of userList();track $index){
                         <tr>
-                        <td>{{$index+1}}</td>
+                        <td>{{$index+1}}</td>                        
+                        <td>{{item.fullName}}</td>
                         <td>{{item.userName}}</td>
                         <td>{{item.emailId}}</td>
                         <td>{{item.role}}</td>
                         <td>{{item.projectName}}</td>
                         <td>{{item.createdDate}}</td>
-                        <td>edit</td>
+                        <td>
+                          <i (click)="editUserRecord(item)" class="fa-solid fa-pen-to-square" title="Edit Record"
+                            style="color: #0041a8"></i>
+                          <i (click)="deleteUserRecord(item.userId)" class="fa-solid fa-trash-can" title="Delete Record"
+                            style="color: #ff0000"></i>
+
+                        </td>
                       </tr>
                       }
                       

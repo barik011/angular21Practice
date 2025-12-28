@@ -6,35 +6,40 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="ng-for">Ng For</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Basic Classes Ex
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" routerLink="ng-for">Ng For</a></li>
+            <li><a class="dropdown-item" [routerLink]="'ng-if'">Ng If</a></li>
+             <li><a class="dropdown-item" [routerLink]="ngClass">Ng Class</a></li>
+            <li><a class="dropdown-item" routerLink="ng-style">Ng Style</a></li>
+            <li><a class="dropdown-item" routerLink="signal">Signal</a></li>
+            <li><a class="dropdown-item" routerLink="api">API</a></li>
+          </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="'ng-if'">Ng If</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Template Form Ex
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+             <li><a class="dropdown-item" routerLink="bus-booking-master">Bus Booking Master</a></li>
+            <li><a class="dropdown-item" routerLink="fee-tracking">Fee Tracking</a></li>
+            <li><a class="dropdown-item" routerLink="enquiry-master">Enquiry Master</a></li>
+            <li><a class="dropdown-item" routerLink="employee-app">Employee App</a></li>
+          </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="ngClass">Ng Class</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="ng-style">Ng Style</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="signal">Signal</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="api">API</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="bus-booking-master">Bus Booking Master</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="fee-tracking">Fee Tracking</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="enquiry-master">Enquiry Master</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="employee-app">Employee App</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Reactive Form Ex
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+             <li><a class="dropdown-item" routerLink="employee-react-app">Employee App</a></li>
+            <!-- <li><a class="dropdown-item" routerLink="fee-tracking">Fee Tracking</a></li>
+            <li><a class="dropdown-item" routerLink="enquiry-master">Enquiry Master</a></li>
+            <li><a class="dropdown-item" routerLink="employee-app">Employee App</a></li> -->
+          </ul>
         </li>
         
       </ul>
