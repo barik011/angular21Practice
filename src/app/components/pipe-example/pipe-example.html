@@ -1,0 +1,49 @@
+<h1>Default Pipe Example</h1>
+<div class="row">
+    <div class="col-4">
+        <p><strong>Title Cases Pipe </strong>----{{customtitle}}</p>
+        <hr>
+        <p><strong>UpperCasePipe: </strong>----{{customtitle | uppercase}}</p>
+        <p><strong>LowerCasePipe: </strong>----{{customtitle | lowercase }}</p>
+        <p><strong>TitleCasePipe: </strong>----{{customtitle | titlecase }}</p>
+    </div>
+    <div class="col-4">
+        <p><strong>DATE: value_expression | date:format:timezone:locale </strong>----Formats a Date value according to locale rules.</p>
+        <hr>
+        <p><strong>date  </strong>----{{customDate | date}}</p>
+        <p><strong>date:'dd-MM-yy' </strong>----{{customDate | date:'dd-MM-yy'}}</p>
+        <p><strong>date:'dd/MM/yy' </strong>----{{customDate | date:'dd/MM/yy'}}</p>
+        <p><strong>date:'MM-dd-yy' </strong>----{{customDate | date:'MM-dd-yy'}}</p>
+        <p><strong>date:'dd-MM-yyyy' </strong>----{{customDate | date:'dd-MM-yyyy'}}</p>
+        <hr>
+        <p><strong>date:'dd-MMM-yyyy' </strong>----{{customDate | date:'dd-MMM-yyyy'}}</p>
+        <p><strong>date:'dd-MMMM-yyyy' </strong>----{{customDate | date:'dd-MMMM-yyyy'}}</p>
+        <p><strong>date:'dd-MMMM-yyyy' </strong>----{{customDate | date:'dd-MMMM-yyyy'}}</p>
+        <p><strong>date:'MMM-dd-yyyy' </strong>----{{customDate | date:'MMM dd yyyy'}}</p>
+        <hr>
+    </div>
+    <div class="col-4">
+        
+        <p><strong>date:'EEE dd-MMM-yyyy' </strong>----{{customDate | date:'EEE dd-MMM-yyyy'}}</p>
+        <p><strong>date:'EEE dd-MMM-yyyy, h:m:s' </strong>----{{customDate | date:'EEE dd-MMM-yyyy, h:m:s'}}</p>
+        <p><strong>date:'EEE dd-MMM-yyyy, h:m:s a' </strong>----{{customDate | date:'EEE dd-MMM-yyyy, h:m:s a'}}</p>
+        <hr>
+        <p><strong>date:'h:m' </strong>----{{customDate | date:'h:m'}}</p>
+        <p><strong>date:'h:m:s' </strong>----{{customDate | date:'h:m:s'}}</p>
+        <p><strong>date:'h:m:s a' </strong>----{{customDate | date:'h:m:s a'}}</p>
+        <p><strong>date:'h:m:s a z' </strong>----{{customDate | date:'h:m:s a z'}}</p>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-6">
+        <p><strong>SLICE: value_expression | slice:start:end </strong>----Creates a new Array or String containing a subset (slice) of the elements</p>
+        <hr>
+        <p><strong>SLICE-- slice:2:10</strong>{{customtitle | slice:2:10}}</p>
+        <p><strong>Roll N0:--</strong>{{rollNo}}</p>
+        <p><strong>Roll N0:--slice:5 </strong>{{rollNo | slice:5}}</p>
+        <p><strong>Roll N0:--slice:5:10 </strong>{{rollNo | slice:5:10}}</p>
+    </div>
+    <div class="col-6"></div>
+</div>
+

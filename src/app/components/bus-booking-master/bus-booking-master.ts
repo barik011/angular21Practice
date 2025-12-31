@@ -1,16 +1,30 @@
+import { NgClass } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-bus-booking-master',
-  imports: [FormsModule],
+  imports: [FormsModule, NgClass, ReactiveFormsModule],
   templateUrl: './bus-booking-master.html',
   styleUrl: './bus-booking-master.css',
 })
 export class BusVendorMaster implements OnInit {
   busVendorList = signal<any[]>([]);
   http = inject(HttpClient);
+
+  userForm: FormGroup = new FormGroup({
+    userId: new FormControl(0),
+    userName: new FormControl(' '),
+    emailId: new FormControl(''),
+    fullName: new FormControl(''),
+    role: new FormControl(''),
+    createdDate: new FormControl(''),
+    password: new FormControl(''),
+    projectName: new FormControl(''),
+    refreshToken: new FormControl(''),
+    refreshTokenExpiryTime: new FormControl(''),
+  });
 
   baseApiUrl: string = 'https://api.freeprojectapi.com/api/BusBooking/';
   ngOnInit(): void {
@@ -130,7 +144,8 @@ export class BusVendorMaster implements OnInit {
   }
 
   onSaveUser() {
-    this.http.post(`${this.baseApiUrl}AddNewUser`, this.newUserObj).subscribe({
+    debugger;
+    this.http.post(`${this.baseApiUrl}AddNewUser`, this.userForm).subscribe({
       next: (res: any) => {
         alert('User Added');
         this.getUserList();

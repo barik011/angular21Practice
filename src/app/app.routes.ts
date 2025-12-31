@@ -10,8 +10,18 @@ import { EnquiryMaster } from './components/enquiry-master/enquiry-master';
 import { FeesTracking } from './components/fees-tracking/fees-tracking';
 import { EmployeeApp } from './components/employee-app/employee-app';
 import { EmployeeReactApp } from './components/employee-react-app/employee-react-app';
+import { PipeExample } from './components/pipe-example/pipe-example';
+import { ReadMoreLess } from './reusableComponents/read-more-less/read-more-less';
 
 export const routes: Routes = [
+    {
+        path:'read-more-less',
+        component:ReadMoreLess
+    },
+    {
+        path:'pipe-example',
+        component:PipeExample
+    },
     {
         path:'employee-react-app',
         component:EmployeeReactApp

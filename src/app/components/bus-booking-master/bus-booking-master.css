@@ -2,3 +2,6 @@
 .table > tbody >tr>td{
     overflow-wrap: anywhere;
 }
+.filed-error{
+    border:1px solid #ff0000;
+}

@@ -144,7 +144,11 @@
                     <td appHighlight>{{item.name}}</td>
                     <td>{{item.middleName}}</td>
                     <td>{{item.surname}}</td>
-                    <td>{{item.address}}</td>
+                    <td>
+                        <!-- <div appEllipsis [maxCharLimit]="90" [fullAddressValue]="item.address">                    
+                        </div> -->
+                        <app-read-more-less [inputText]="item.address" [textLimit]="60"></app-read-more-less>
+                    </td>
                     <td>{{item.city}}</td>
                     <td>{{item.state}}</td>
                 </tr>

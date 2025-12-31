@@ -1,0 +1,4 @@
+ <p>{{isShowMoreLess? (inputText | naPipe) :(inputText|slice:0:textLimit)}}</p>
+@if(inputText.length > textLimit){
+     <button type="button" (click)="onToggleMoreLess()" class="btn btn-secondary" >{{isShowMoreLess ? 'Read More':'Read Less'}}</button>
+}
