@@ -1,17 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Tabs } from "../../reusableComponents/tabs/tabs";
 
 @Component({
   selector: 'app-fees-tracking',
-  imports: [FormsModule],
+  imports: [FormsModule, Tabs],
   templateUrl: './fees-tracking.html',
   styleUrl: './fees-tracking.css',
 })
 export class FeesTracking implements OnInit {
   batchList = signal<any[]>([]);
   http = inject(HttpClient);
-
+  tabName:string[]=['Emplyee List','Add New Emplyee'];
+  activeTabName:string= this.tabName[0];
   ngOnInit(): void {
     this.getBatches();
   }
@@ -49,7 +51,8 @@ export class FeesTracking implements OnInit {
   }
 
   editRecord(item: any) {
-    this.isOpenForm = true;
+    this.activeTabName = this.tabName[1];
+    // this.isOpenForm = true;
     this.newBatchObj = item;
   }
   onUpdateBatch() {
@@ -89,5 +92,10 @@ export class FeesTracking implements OnInit {
       batchName: '',
       createdDate: new Date(),
     };
+  }
+
+
+  getCurrentTab(currtabName:string){
+    this.activeTabName = currtabName;
   }
 }

@@ -1,13 +1,27 @@
 <h1>Default Pipe Example</h1>
+<app-tabs [tabs]="tabName" [activeTab]="'Title'" (onTabChange)="getCurrentTab($event)"></app-tabs>
 <div class="row">
-    <div class="col-4">
-        <p><strong>Title Cases Pipe </strong>----{{customtitle}}</p>
+    @if(selectedTabName=='Title'){
+        <div class="col-6">
+            <p><strong>Title Cases Pipe </strong>----{{customtitle}}</p>
+            <hr>
+            <p><strong>UpperCasePipe: </strong>----{{customtitle | uppercase}}</p>
+            <p><strong>LowerCasePipe: </strong>----{{customtitle | lowercase }}</p>
+            <p><strong>TitleCasePipe: </strong>----{{customtitle | titlecase }}</p>
+        </div>
+    }
+    @else if (selectedTabName=='Slice') {
+        <div class="col-6">
+        <p><strong>SLICE: value_expression | slice:start:end </strong>----Creates a new Array or String containing a subset (slice) of the elements</p>
         <hr>
-        <p><strong>UpperCasePipe: </strong>----{{customtitle | uppercase}}</p>
-        <p><strong>LowerCasePipe: </strong>----{{customtitle | lowercase }}</p>
-        <p><strong>TitleCasePipe: </strong>----{{customtitle | titlecase }}</p>
+        <p><strong>SLICE-- slice:2:10</strong>{{customtitle | slice:2:10}}</p>
+        <p><strong>Roll N0:--</strong>{{rollNo}}</p>
+        <p><strong>Roll N0:--slice:5 </strong>{{rollNo | slice:5}}</p>
+        <p><strong>Roll N0:--slice:5:10 </strong>{{rollNo | slice:5:10}}</p>
     </div>
-    <div class="col-4">
+    }
+    @else if (selectedTabName=='Date') {
+        <div class="col-6">
         <p><strong>DATE: value_expression | date:format:timezone:locale </strong>----Formats a Date value according to locale rules.</p>
         <hr>
         <p><strong>date  </strong>----{{customDate | date}}</p>
@@ -22,7 +36,7 @@
         <p><strong>date:'MMM-dd-yyyy' </strong>----{{customDate | date:'MMM dd yyyy'}}</p>
         <hr>
     </div>
-    <div class="col-4">
+    <div class="col-6">
         
         <p><strong>date:'EEE dd-MMM-yyyy' </strong>----{{customDate | date:'EEE dd-MMM-yyyy'}}</p>
         <p><strong>date:'EEE dd-MMM-yyyy, h:m:s' </strong>----{{customDate | date:'EEE dd-MMM-yyyy, h:m:s'}}</p>
@@ -33,17 +47,10 @@
         <p><strong>date:'h:m:s a' </strong>----{{customDate | date:'h:m:s a'}}</p>
         <p><strong>date:'h:m:s a z' </strong>----{{customDate | date:'h:m:s a z'}}</p>
     </div>
+    }
+    
+    
+    
 
-</div>
-<div class="row">
-    <div class="col-6">
-        <p><strong>SLICE: value_expression | slice:start:end </strong>----Creates a new Array or String containing a subset (slice) of the elements</p>
-        <hr>
-        <p><strong>SLICE-- slice:2:10</strong>{{customtitle | slice:2:10}}</p>
-        <p><strong>Roll N0:--</strong>{{rollNo}}</p>
-        <p><strong>Roll N0:--slice:5 </strong>{{rollNo | slice:5}}</p>
-        <p><strong>Roll N0:--slice:5:10 </strong>{{rollNo | slice:5:10}}</p>
-    </div>
-    <div class="col-6"></div>
 </div>
 
