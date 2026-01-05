@@ -153,7 +153,6 @@ export class EmployeeApp {
     this.isOpenForm = true;
     this.http.get(`${this.baseApiUrl}${id}`).subscribe({
       next: (resp: any) => {
-
         const formatedDate = this.datePipe.transform(resp.dateOfJoining, 'dd-MM-yy')
         this.newEmployeeObj = resp;
         this.newEmployeeObj.dateOfJoining = formatedDate;
