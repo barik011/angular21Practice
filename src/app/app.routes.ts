@@ -12,8 +12,13 @@ import { EmployeeApp } from './components/employee-app/employee-app';
 import { EmployeeReactApp } from './components/employee-react-app/employee-react-app';
 import { PipeExample } from './components/pipe-example/pipe-example';
 import { ReadMoreLess } from './reusableComponents/read-more-less/read-more-less';
+import { RxJsBasic } from './components/rx-js-basic/rx-js-basic';
 
 export const routes: Routes = [
+    {
+        path:'rxjs',
+        component:RxJsBasic
+    },
     {
         path:'read-more-less',
         component:ReadMoreLess
