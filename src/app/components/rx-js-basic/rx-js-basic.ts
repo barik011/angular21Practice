@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { interval, Observable, of } from 'rxjs';
+import { from, interval, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-rx-js-basic',
@@ -19,7 +19,11 @@ export class RxJsBasic {
 
     $count= interval(5000);
 
-    $empData =  of({empName:'Barique',empCity:'Purnea',empState:'Bihar',empMob: 9898989898})
+    $empData =  of({empName:'Barique',empCity:'Purnea',empState:'Bihar',empMob: 9898989898});
+    $areaCode =  of(['110025','124514','5465865','5465875']);
+
+
+    $cityList = from(['Purnea','katihar','Araria','Kisanganj']);
 
 
 
@@ -44,6 +48,17 @@ export class RxJsBasic {
     this.$empData.subscribe((emp)=>{
       debugger;
       console.log(emp);
+    })
+
+    this.$areaCode.subscribe((code)=>{
+      debugger;
+      console.log(code);
+    })
+
+    //City itterate one by one
+    this.$cityList.subscribe((city)=>{
+      debugger;
+      console.log(city);
     })
 
 
