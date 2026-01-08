@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { interval, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-rx-js-basic',
@@ -16,15 +16,36 @@ export class RxJsBasic {
       fullname.next('Mohammad');
     });
      
+
+    $count= interval(5000);
+
+    $empData =  of({empName:'Barique',empCity:'Purnea',empState:'Bihar',empMob: 9898989898})
+
+
+
+
+
     constructor(){
       debugger
-      this.$fullName.subscribe(fullname=>{
-        debugger
-        console.log(fullname);
-      })
+      // this.$fullName.subscribe(fullname=>{
+      //   debugger
+      //   console.log(fullname);
+      // })
 
       this.$obsrData.subscribe((no)=>{
         debugger
       })
+
+    //   this.$count.subscribe((number)=>{
+    //     debugger;
+    //     console.log(number)
+    // });
+
+    this.$empData.subscribe((emp)=>{
+      debugger;
+      console.log(emp);
+    })
+
+
     }
 }
