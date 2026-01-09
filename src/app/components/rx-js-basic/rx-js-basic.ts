@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BehaviorSubject, from, interval, Observable, of, Subject } from 'rxjs';
+import { BehaviorSubject, from, interval, Observable, of, ReplaySubject, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-rx-js-basic',
@@ -12,6 +12,9 @@ export class RxJsBasic {
     //Uni Cast (Cold Observable) Observable
     $obsrData = new Observable<number>(res=>{
       res.next(123);
+      res.next(456);
+      res.next(789);
+      res.next(111213);
     });
     $fullName = new Observable<string>(fullname=>{
       fullname.next('Mohammad');
@@ -28,8 +31,7 @@ export class RxJsBasic {
 
     $loggedUserRole:BehaviorSubject<string> = new BehaviorSubject<string>("Admin");
 
-
-
+    $loggedUserMultiRoleReplySub: ReplaySubject<string[]>=new ReplaySubject<string[]>
 
 
     constructor(){
@@ -48,21 +50,21 @@ export class RxJsBasic {
     //     console.log(number)
     // });
 
-    this.$empData.subscribe((emp)=>{
-      debugger;
-      console.log(emp);
-    })
+    // this.$empData.subscribe((emp)=>{
+    //   debugger;
+    //   console.log(emp);
+    // })
 
-    this.$areaCode.subscribe((code)=>{
-      debugger;
-      console.log(code);
-    })
+    // this.$areaCode.subscribe((code)=>{
+    //   debugger;
+    //   console.log(code);
+    // })
 
     //City itterate one by one
-    this.$cityList.subscribe((city)=>{
-      debugger;
-      console.log(city);
-    })
+    // this.$cityList.subscribe((city)=>{
+    //   debugger;
+    //   console.log(city);
+    // })
     let finalValue
     this.$loggedUserNameSub.subscribe((res)=>{
       debugger;
@@ -82,6 +84,13 @@ export class RxJsBasic {
 
     this.$loggedUserRole.next('Super Admin');
 
+    let multipleRole;
+    this.$loggedUserMultiRoleReplySub.subscribe((multiRole)=>{
+      debugger;
+      multipleRole = multiRole;
+    })
+
+    this.$loggedUserMultiRoleReplySub.next(['Admin','Super Admin']);
 
     }
 }

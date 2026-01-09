@@ -1,1 +1,11 @@
 <p>signal-ex works!</p>
+<div>
+    Enter First Numbe:<input type="text" [(ngModel)]="firstNumber" /><br>
+    Enter Second Numbe:<input type="text" [(ngModel)]="secondNumber" /><br>
+    Enter Third Numbe:<input type="text" [(ngModel)]="thirdNumber" />
+</div>
+<div><button (click)="onSumOfTwo()">Sum</button> of 2 Number= {{sumOfTwoNumber}}</div>
+<div><button (click)="onSumOfThree()">Sum</button> of 3 Number= {{sumOfThreeNumber}}</div>
+<div><button (click)="onSumOfAnyNumber()">Sum</button> of Any Number 2= {{sumOfAnyNumber}}</div>
+<div><button (click)="onSumOfAnyNumber2()">Sum</button> of Any Number 3= {{sumOfAnyNumber2}}</div>
+<div></div>
