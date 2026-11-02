@@ -26,7 +26,8 @@ export class BusVendorMaster implements OnInit {
     refreshTokenExpiryTime: new FormControl(''),
   });
 
-  baseApiUrl: string = 'https://api.freeprojectapi.com/api/BusBooking/';
+  baseApiUrl: string = 'https://api.freeprojectapi.com/api/BusBooking/'; //Old Url 
+  //baseApiUrl: string = 'https://projectapi.gerasim.in/api/BusBooking'; // New Url
   ngOnInit(): void {
     this.getAllBusVendor();
     this.getUserList();
